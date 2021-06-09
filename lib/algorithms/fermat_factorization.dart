@@ -22,21 +22,20 @@ Map<String, dynamic> fermatFactorization(dynamic inputValue) {
     return result;
   }
   var b;
-  sleep(Duration(milliseconds: 995));
+  //sleep(Duration(milliseconds: 995));
   while (true) {
     int b1 = a * a - inputNumber;
     b = sqrt(b1).ceil();
     if (b * b == b1)
       break;
     else
-      a += 1;
+      a++;
     result['iterations']++;
   }
-  print(stopwatch.elapsedMilliseconds);
-  if (stopwatch.elapsedMilliseconds > 1000) {
-    result['value'] = 'Time is up(1 sec)';
-  } else {
-    result['value'] = '${a - b} * ${a + b}';
-  }
+
+  final timing = stopwatch.elapsedMilliseconds;
+  print(timing);
+  result['time'] = timing.toString();
+  result['value'] = '${a - b} * ${a + b}';
   return result;
 }

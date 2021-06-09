@@ -11,10 +11,10 @@ class _PerceptronState extends State<Perceptron> {
   // ignore: override_on_non_overriding_member
   final _points = 'А(0,6), В(1,5), С(3,3), D(2,4)';
   int _thresholdOperation = 4;
-  String _chosenSpeed;
-  String _chosenTime;
+  String? _chosenSpeed;
+  String? _chosenTime;
   bool isSwitched = false;
-  String _chosenIteration;
+  String? _chosenIteration;
   String resultValue = '';
   bool _offstage = true;
 
@@ -51,8 +51,8 @@ class _PerceptronState extends State<Perceptron> {
                   ),
                   _buildDropDownElement(
                       items: ['0.001', '0.01', '0.05', '0.1', '0.2', '0.3'],
-                      chosenValue: _chosenSpeed,
-                      onChanged: (String value) => {
+                      chosenValue: _chosenSpeed!,
+                      onChanged: (String? value) => {
                             setState(() {
                               _chosenSpeed = value;
                             })
@@ -95,8 +95,8 @@ class _PerceptronState extends State<Perceptron> {
                         ),
                         _buildDropDownElement(
                             items: ['0.5', '1', '2', '5'],
-                            chosenValue: _chosenTime,
-                            onChanged: (String value) => {
+                            chosenValue: _chosenTime!,
+                            onChanged: (String? value) => {
                                   setState(() {
                                     _chosenTime = value;
                                   })
@@ -113,8 +113,8 @@ class _PerceptronState extends State<Perceptron> {
                         ),
                         _buildDropDownElement(
                             items: ['100', '200', '500', '1000'],
-                            chosenValue: _chosenIteration,
-                            onChanged: (String value) => {
+                            chosenValue: _chosenIteration!,
+                            onChanged: (String? value) => {
                                   setState(() {
                                     _chosenIteration = value;
                                   })
@@ -148,7 +148,7 @@ class _PerceptronState extends State<Perceptron> {
                     resultValue = perceptron(
                         currentPoints: _points,
                         thresholdOperation: _thresholdOperation,
-                        speed: double.parse(_chosenSpeed),
+                        speed: double.parse(_chosenSpeed!),
                         maxIterations: int.parse(_chosenIteration ?? '0'),
                         maxTime: double.parse(_chosenTime ?? '0'));
                   });
@@ -162,13 +162,13 @@ class _PerceptronState extends State<Perceptron> {
   }
 
   Widget _buildDropDownElement(
-          {List<String> items,
-          String chosenValue,
-          ValueChanged<String> onChanged}) =>
+          {List<String>? items,
+          String? chosenValue,
+          ValueChanged<String?>? onChanged}) =>
       DropdownButton<String>(
           value: chosenValue,
           style: TextStyle(color: Colors.black),
-          items: items.map<DropdownMenuItem<String>>((String value) {
+          items: items?.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: Text(value),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TabItem {
-  TabItem({this.label, this.title, this.icon, this.backgroundColor});
+  TabItem({required this.label, required this.title, this.icon, required this.backgroundColor});
   final String label;
   final String title;
   final icon;
@@ -13,21 +13,21 @@ List<TabItem> allTabItems = <TabItem>[
       icon: Icon(Icons.miscellaneous_services),
       label: 'factorization',
       title: 'Fermat`s factorization example',
-      backgroundColor: Colors.redAccent[400]),
+      backgroundColor: Colors.redAccent[400]!),
   TabItem(
       icon: Icon(Icons.mediation),
       label: 'perceptron',
       title: 'Perceptron example',
-      backgroundColor: Colors.tealAccent[400]),
+      backgroundColor: Colors.tealAccent[400]!),
   TabItem(
       icon: Icon(Icons.developer_board),
       label: 'genetic',
       title: 'Genetic algorithm for diaphantine equation',
-      backgroundColor: Colors.deepPurpleAccent[400]),
+      backgroundColor: Colors.deepPurpleAccent[400]!),
 ];
 
 class BottomNavigation extends StatelessWidget {
-  BottomNavigation({@required this.currentIndex, @required this.onSelectTab});
+  BottomNavigation({required this.currentIndex, required this.onSelectTab});
 
   final int currentIndex;
   final ValueChanged<int> onSelectTab;

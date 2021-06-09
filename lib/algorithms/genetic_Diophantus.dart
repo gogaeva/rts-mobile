@@ -8,7 +8,7 @@ String geneticAlgorithm(
   final resultIteration2 =
       geneticAlgorithmCalc(inputEquation, numberPopulations * 2, maxIterations);
 
-  result.addAll([resultIteration1, resultIteration2]);
+  result.addAll([resultIteration1!, resultIteration2!]);
   if (int.parse(resultIteration1.split(': ').last) <
       int.parse(resultIteration2.split(': ').last)) {
     result.add('Не варто було збільшувати кількість популяцій');
@@ -18,7 +18,7 @@ String geneticAlgorithm(
   return result.join('\n');
 }
 
-String geneticAlgorithmCalc(
+String? geneticAlgorithmCalc(
     List<String> inputEquation, int numberPopulations, int maxIterations) {
   final stopwatch = Stopwatch()..start();
   final inputCoefficients = List.generate(
@@ -32,13 +32,13 @@ String geneticAlgorithmCalc(
   var iterationCounter = 0;
   while (iterations == 0 || iterations > 0) {
     iterationCounter++;
-    List<int> result;
+    List<int> result = <int>[];
     final deltasFitness = currentPopulation.map<int>((chromosome) {
       final delta = calcFitness(inputCoefficients, chromosome, yValue);
       if (delta == 0) result = chromosome;
       return delta;
     }).toList();
-    if (result != null)
+    if (result.length > 0)
       return result.toString() +
           '\ntime: ${stopwatch.elapsedMilliseconds / 1000}\niterations: $iterationCounter';
     final probabilities = calcProbability(deltasFitness);

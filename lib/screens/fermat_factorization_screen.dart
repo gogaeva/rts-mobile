@@ -70,6 +70,11 @@ class _FermatFactorizationState extends State<FermatFactorization> {
                   final result = fermatFactorization(_numberController.text);
                   resultValue = result['value'];
                   iterations = result['iterations'].toString();
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                        _buildPopup(context, result['time'] + ' ms'),
+                  );
                 });
               },
             ),
@@ -78,4 +83,11 @@ class _FermatFactorizationState extends State<FermatFactorization> {
       ),
     );
   }
+}
+
+Widget _buildPopup(BuildContext context, String _content) {
+  return AlertDialog(
+    title: Text("Execution time"),
+    content: Text(_content),
+  );
 }
